@@ -1,7 +1,8 @@
 ﻿// The program should be updated to...
 
-// Display the number of the user's current guess in the prompt. For example, if the user has already guessed one time, the prommpt should say something like Your guess (2)>.
-// End the loop early if the user guesses the correct number.
+// Use a random number to set the secret number between 1 and 100 instead of a hard-coded number.
+// The prompt should display the number of guesses the user has left.
+
 
 using System;
 namespace GuessingGame
@@ -31,16 +32,22 @@ namespace GuessingGame
         {
             for (int i = 0; i < numberOfChances; i++)
             {
+                Console.WriteLine($"Guess number {i + 1}");
                 int userGuess = GetUserGuess();
                 isSecretNumber(userGuess, secretNumber);
+
 
                 if (secretNumber == userGuess)
                 {
                     break;
                 }
+                if (i == numberOfChances - 1)
+                {
+                    Console.WriteLine("Sorry! You FAILED!");
+                }
             }
-            Console.WriteLine("Sorry! You FAILED!");
         }
+
 
         static void isSecretNumber(int userGuess, int secretNumber)
         {
