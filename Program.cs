@@ -13,13 +13,13 @@ namespace GuessingGame
         {
             Console.WriteLine("Guess the secret number!");
 
-            int secretNumber = 42;
-
+            Random num = new Random();
+            int secretNumber = num.Next(100);
             MultipleChances(4, secretNumber);
         }
         static int GetUserGuess()
         {
-            Console.Write("Enter a number: ");
+            Console.Write("Enter a number (1-100): ");
             int userGuess = int.Parse(Console.ReadLine());
             return userGuess;
         }
@@ -28,22 +28,23 @@ namespace GuessingGame
             Console.WriteLine($"You guessed {userGuess}");
         }
 
-        static void MultipleChances(int numberOfChances, int secretNumber)
+        static void MultipleChances(int numberOfChances, int SecretNumber)
         {
             for (int i = 0; i < numberOfChances; i++)
             {
-                Console.WriteLine($"Guess number {i + 1}");
+                Console.WriteLine($"Guesses remaining: {numberOfChances - i}");
+
                 int userGuess = GetUserGuess();
-                isSecretNumber(userGuess, secretNumber);
+                isSecretNumber(userGuess, SecretNumber);
 
 
-                if (secretNumber == userGuess)
+                if (SecretNumber == userGuess)
                 {
                     break;
                 }
                 if (i == numberOfChances - 1)
                 {
-                    Console.WriteLine("Sorry! You FAILED!");
+                    Console.WriteLine($"Sorry! You FAILED! The correct answer was {SecretNumber}");
                 }
             }
         }
