@@ -1,7 +1,4 @@
-﻿// The program should be updated to...
-
-// Use a random number to set the secret number between 1 and 100 instead of a hard-coded number.
-// The prompt should display the number of guesses the user has left.
+﻿// Inform the user if their guess was too high or too low, when they guess incorrectly.
 
 
 using System;
@@ -37,6 +34,16 @@ namespace GuessingGame
                 int userGuess = GetUserGuess();
                 isSecretNumber(userGuess, SecretNumber);
 
+                if (SecretNumber < userGuess)
+                {
+                    Console.WriteLine("You're a little high there bud.");
+                    Console.WriteLine($"{SecretNumber}");
+                }
+                else if (SecretNumber > userGuess)
+                {
+                    Console.WriteLine("You're a little low there bud.");
+                    Console.WriteLine($"{SecretNumber}");
+                }
 
                 if (SecretNumber == userGuess)
                 {
