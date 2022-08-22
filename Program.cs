@@ -1,5 +1,8 @@
-﻿// Inform the user if their guess was too high or too low, when they guess incorrectly.
-
+﻿// Prompt the user for a difficulty level before they are prompted to guess the number.
+// The difficulty level should determine how many guesses the user gets. The difficulty levels should be:
+// Easy - this gives the user eight guesses.
+// Medium - this gives the user six guesses.
+// Hard - this gives the user four guesses.
 
 using System;
 namespace GuessingGame
@@ -8,11 +11,12 @@ namespace GuessingGame
     {
         static void Main(string[] args)
         {
+            int numberOfChances = GetNumberOfChances();
             Console.WriteLine("Guess the secret number!");
 
             Random num = new Random();
             int secretNumber = num.Next(100);
-            MultipleChances(4, secretNumber);
+            MultipleChances(numberOfChances, secretNumber);
         }
         static int GetUserGuess()
         {
@@ -53,6 +57,30 @@ namespace GuessingGame
                 {
                     Console.WriteLine($"Sorry! You FAILED! The correct answer was {SecretNumber}");
                 }
+            }
+        }
+
+        static int GetNumberOfChances()
+        {
+            Console.WriteLine("Choose your difficulty level(Easy-1, Medium-2, Hard-3): ");
+            int difficulty = int.Parse(Console.ReadLine());
+
+            if (difficulty == 1)
+            {
+                return 8;
+            }
+            else if (difficulty == 2)
+            {
+                return 6;
+            }
+            else if (difficulty == 3)
+            {
+                return 4;
+            }
+            else
+            {
+                Console.WriteLine("Not a valid input you fool!");
+                return 0;
             }
         }
 
